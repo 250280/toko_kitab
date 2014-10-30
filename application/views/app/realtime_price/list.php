@@ -25,13 +25,13 @@ $(function(){
             <th>Cabang</th>
             <th>Kategori</th>
             <th>Nama Produk</th>
-			<th>Tipe Produk</th>
+			
             <th>Qty</th>
             <th>Harga User</th>
-            <th>Harga Freeline</th>
+           <!-- <th>Harga Freeline</th>
             <th>Harga Counter</th>
             <th>Harga Online</th>
-            <th>Harga Distributor</th>
+            <th>Harga Distributor</th>-->
 		</tr> 
 	</thead> 
 	<tbody> 	

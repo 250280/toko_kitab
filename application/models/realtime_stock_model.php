@@ -51,12 +51,10 @@ class realtime_stock_model extends CI_Model{
 		};	
 
 		$sql = "
-		select a.* , b.product_name, c.stand_name, d.product_type_name, e.product_category_name
-		from product_stocks a
-		join products b on b.product_id = a.product_id
-		join stands c on c.stand_id = a.stand_id
-		join product_types d on d.product_type_id = b.product_type_id
-		join product_categories e on e.product_category_id = b.product_category_id
+		SELECT a . * , b.product_name, e.product_category_name
+		FROM product_stocks a
+		JOIN products b ON b.product_id = a.product_id
+		JOIN product_categories e ON e.product_category_id = b.product_category_id
 		$where  $order_by
 			
 			";
@@ -76,7 +74,7 @@ class realtime_stock_model extends CI_Model{
 				$row['stand_name'],
 				$row['product_category_name'],
 				$row['product_name'],
-				$row['product_type_name'],
+				//$row['product_type_name'],
 				$row['product_stock_qty'],
 				tool_money_format($row['user_price']),
 				tool_money_format($row['freeline_price']),
@@ -154,9 +152,9 @@ class realtime_stock_model extends CI_Model{
 	
 	function get_data_product() {
 		
-		$query = "select a.*, b.product_type_name, c.product_category_name
+		$query = "select a.*, c.product_category_name
 					from products a
-					join product_types b on b.product_type_id = a.product_type_id
+					
 					join product_categories c on c.product_category_id = a.product_category_id
 					"
 					;

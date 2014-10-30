@@ -14,7 +14,7 @@
 	foreach($list_flow_transaction as $item): 
 	
 	?>
-	<tr>
+	<!--<tr>
     
 		<td ><?= $item['coa_name']?>
 	</td>
@@ -34,7 +34,7 @@
       
         </td>
         
-	</tr>
+	</tr> -->
 	
 	 <?php
 	

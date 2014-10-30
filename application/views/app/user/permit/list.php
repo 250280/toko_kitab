@@ -139,9 +139,9 @@ $(function() {
 			create_permit_item(2, 'Produk', 'master.product', $checked);
 				create_permit_item(3, 'Kategori Produk', 'master.product_category', $checked);
 				create_permit_item(3, 'Tipe Produk', 'master.product_type', $checked);
-			create_permit_item(2, 'Souvenir', 'master.souvenir', $checked);
+			//create_permit_item(2, 'Souvenir', 'master.souvenir', $checked);
 			create_permit_item(2, 'Cabang', 'master.stand', $checked);
-			create_permit_item(2, 'Salesman', 'master.salesman', $checked);
+			//create_permit_item(2, 'Salesman', 'master.salesman', $checked);
 		
 		
 		/* ------ List Setup menu Akuntansi ------ */
@@ -156,11 +156,11 @@ $(function() {
 		/* ------ List Setup menu Penjualan ------ */
 		create_permit_item(1, 'Penjualan', 'main.sales_transaction', $checked); 
 			create_permit_item(2, 'Penjualan User', 'transaction.normal_sales_transaction', $checked);
-			create_permit_item(2, 'Penjualan Freeline', 'transaction.freeline_sales_transaction', $checked);
-			create_permit_item(2, 'Penjualan Distributor', 'transaction.distributor_sales_transaction', $checked);
-			create_permit_item(2, 'Penjualan Counter', 'transaction.counter_sales_transaction', $checked);
-			create_permit_item(2, 'Penjualan Online', 'transaction.online_sales_transaction', $checked);
-			create_permit_item(2, 'Retur Penjualan', 'transaction.retur_sales_transaction', $checked);
+			//create_permit_item(2, 'Penjualan Freeline', 'transaction.freeline_sales_transaction', $checked);
+			//create_permit_item(2, 'Penjualan Distributor', 'transaction.distributor_sales_transaction', $checked);
+			//create_permit_item(2, 'Penjualan Counter', 'transaction.counter_sales_transaction', $checked);
+			//create_permit_item(2, 'Penjualan Online', 'transaction.online_sales_transaction', $checked);
+			//create_permit_item(2, 'Retur Penjualan', 'transaction.retur_sales_transaction', $checked);
 			
 		/* ------ List Setup menu Pembelian ------ */
 		create_permit_item(1, 'Pembelian', 'main.purchase', $checked); 
@@ -179,6 +179,7 @@ $(function() {
 			create_permit_item(2, 'User', 'tool.user', $checked);
 			create_permit_item(2, 'Hak Akses', 'tool.permit', $checked);
 			create_permit_item(2, 'Agenda', 'tool.schedule', $checked);
+			create_permit_item(2, 'Periode', 'tool.periode', $checked);
 		
 		/* ------ List Setup menu pegawai ------ */
 		create_permit_item(1, 'Pegawai', 'main.employee', $checked); 

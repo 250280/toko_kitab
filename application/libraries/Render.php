@@ -13,6 +13,7 @@ class Render
 	var $content_buffer4;
 	var $content_buffer5;
 	var $content_buffer6;
+	var $content_buffer7;
 	var $is_using_table = 0;
 	var $is_accordion;
 	var $accordion_buffer;
@@ -166,7 +167,8 @@ class Render
 		$this->content_buffer3 .= $ci->load->view('app/dashboard/limit_stock', $params, true);
 		$this->content_buffer4 .= $ci->load->view('app/dashboard/flow_transaction', $params, true);
 		$this->content_buffer5 .= $ci->load->view('app/dashboard/profit', $params, true);
-		$this->content_buffer6 .= $ci->load->view('app/dashboard/top_salesman', $params, true);
+		$this->content_buffer6 .= $ci->load->view('app/dashboard/limit_expired', $params, true);
+		//$this->content_buffer7 .= $ci->load->view('app/dashboard/limit_expired', $params, true);
 		
 	}
 	
@@ -201,6 +203,7 @@ class Render
 		$data['content4'] = $this->content_buffer4;
 		$data['content5'] = $this->content_buffer5;
 		$data['content6'] = $this->content_buffer6;
+		//$data['content7'] = $this->content_buffer7;
 		$data['ico'] = $ico;
 		$this->block['content'] .= $this->ci->load->view('layout/default/' . $frame, $data, true);
 		$this->content_buffer = "";$this->content_form_transient = "";

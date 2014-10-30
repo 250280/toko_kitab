@@ -14,7 +14,8 @@ $(function(){
 		dataSource		: "lookup/product_category_lookup_id",
 		column_id 		: 0,
 		component_id	: "#lookup_product_category",
-		filter_by		: [{id : "p1", label : "Nama"}]
+		filter_by		: [{id : "p1", label : "Nama"}],
+		
 	});
 	
 	createLookUp({
@@ -27,8 +28,21 @@ $(function(){
 		filter_by		: [{id : "p1", label : "Nama"}]
 	});
 	
+	function load_category(){
+		 var i_category_id = $('input[name="i_category_id"]').val();
+		var expired = document.getElementById("expired");
+		if(i_category_id == 1){
+			expired.style.display = 'inline';
+		}else{
+			expired.style.display = 'none';
+		}
+		
+	}
+	
 	createDatePicker();
 });
+
+
 
 </script>
 
@@ -49,14 +63,14 @@ $(function(){
      <tr>
      <td>Kategori Produk
         <span class="lookup" id="lookup_product_category">
-				<input type="hidden" name="i_category_id" class="com_id" value="<?=$product_category_id?>" />
+				<input type="hidden" name="i_category_id" id="i_category_id" class="com_id" value="<?=$product_category_id?>" />
                 <div class="iconic_base iconic_search com_popup"></div>
 				<input type="text" class="com_input" />
 				
 				</span>	
        </td>
      </tr>
-       <tr>
+       <!--<tr>
      <td>Tipe Produk
         <span class="lookup" id="lookup_product_type">
 				<input type="hidden" name="i_type_id" class="com_id" value="<?=$product_type_id?>" />
@@ -65,12 +79,18 @@ $(function(){
 				
 				</span>	
        </td>
-     </tr>
+     </tr>-->
  <tr>
    <tr>
      <td>Harga Beli
        <input name="i_purchase_price" type="text" id="i_purchase_price" value="<?=$product_purchase_price ?>" size="10"/></td>
      </tr>
+   
+     <tr >
+     <!--<td id="expired">Expired
+       <input name="i_expired" type="text" id="i_expired" value="<?=$product_expired ?>" class="date_input" size="10"/></td>
+     </tr>-->
+   
       <tr>
      <td>Min Reorder
        <input name="i_min_reorder" type="text" id="i_min_reorder" value="<?=$product_min_reorder ?>" size="10"/></td>

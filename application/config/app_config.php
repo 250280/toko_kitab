@@ -1,7 +1,7 @@
 <?php
 
-$config['app_name']		= 'Wimbi Komunika';
-$config['app_client']		= 'Wimbi Komunika';
+$config['app_name']		= 'Toko & Apotik';
+$config['app_client']		= 'Toko & Apotik';
 
 $config['is_production']	= false;
 $config['is_debugging']		= false;

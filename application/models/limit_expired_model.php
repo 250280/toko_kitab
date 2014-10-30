@@ -1,6 +1,6 @@
 <?php
 
-class Limit_stock_model extends CI_Model{
+class Limit_expired_model extends CI_Model{
 
 	function __construct(){
 		
@@ -30,7 +30,7 @@ class Limit_stock_model extends CI_Model{
 		$order_by_column[] = 'product_category_name';
 		$order_by_column[] = 'product_name';
 		//$order_by_column[] = 'product_type_name';
-		$order_by_column[] = 'product_stock_qty';
+		$order_by_column[] = 'expired';
 		
 		
 		$order_by = " order by ".$order_by_column[$sort_column_index] . $sort_dir;
@@ -46,13 +46,13 @@ class Limit_stock_model extends CI_Model{
 		};	
 
 		$sql = "
-		select a.product_stock_id, a.product_stock_qty, b.product_code, b.product_name, c.product_category_name,  e.stand_name
+		select a.product_stock_id, a.expired, b.product_code, b.product_name, c.product_category_name,  e.stand_name
 				from product_stocks a
 				join products b on b.product_id = a.product_id
 				join product_categories c on c.product_category_id = b.product_category_id
 				
 				join stands e on e.stand_id = a.stand_id 
-				where  a.product_stock_qty <= b.product_min_reorder
+				
 			$where  $order_by
 			
 			";
@@ -73,7 +73,7 @@ class Limit_stock_model extends CI_Model{
 				$row['product_category_name'],
 				$row['product_name'],
 				//$row['product_type_name'],
-				$row['product_stock_qty']
+				$row['expired']
 			); 
 		}
 		

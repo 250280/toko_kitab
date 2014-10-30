@@ -98,7 +98,7 @@ $(function(){
 				<th width="10%">ID</th>
 				<th>Kode</th>
                 <th>Nama</th>
-                <th>Tipe</th>
+               <!-- <th>Tipe</th> -->
                 <th>Kategori</th>
                 
 			</tr> 

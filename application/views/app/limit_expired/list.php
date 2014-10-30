@@ -2,9 +2,9 @@
 $(function(){
 	var otable = createTable({
 		id 		: "#table",
-		listSource 	: "limit_stock/table_controller",
-		formTarget 	: "limit_stock/form",
-		actionTarget: "limit_stock/form_action",
+		listSource 	: "limit_expired/table_controller",
+		formTarget 	: "limit_expired/form",
+		actionTarget: "limit_expired/form_action",
 		column_id	: 0,
 		
 		filter_by 	: [ 
@@ -26,7 +26,7 @@ $(function(){
             <th>Kategori</th>
             <th>Nama Produk</th>
 			
-            <th>Qty</th>
+            <th>Expired</th>
 		</tr> 
 	</thead> 
 	<tbody> 	

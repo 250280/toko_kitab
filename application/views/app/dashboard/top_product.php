@@ -6,7 +6,7 @@
     <td align="center">No </td>
       <td align="center">Kode </td>
       <td align="left">Nama </td>
-      <td align="left">Tipe </td>
+     <!-- <td align="left">Tipe </td>-->
     
       <td align="left">Total</td>
     </tr>
@@ -24,7 +24,7 @@
 			 }?></td>
       <td align="center"><?= $item['product_code']?></td>
       <td><?= $item['product_name']?></td>
-      <td><?= $item['product_type_name']?></td>
+      <!--<td><?= $item['product_type_name']?></td>-->
       
       <td><?= $item['qty'] ?></td>
     </tr>

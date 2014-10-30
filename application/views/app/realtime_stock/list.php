@@ -2,7 +2,7 @@
 $(function(){
 	var otable = createTableFixed({
 		id	: "#table",
-		formTarget 	: "customer/form",
+		formTarget 	: "realtime_stock/form",
 		"useSearch" : true
 	}, {
 		"bPaginate" : true,
@@ -20,10 +20,10 @@ $(function(){
 			<th>ID</th>
             <th>Nama Produk</th>
             <th>Kategori</th>
-            <th>Tipe</th>
+            <!--<th>Tipe</th>-->
             <th>Total</th>
 			<?php foreach($list as $item): ?>
-            <th><?=$item['stand_name']?></th>
+            <!--<th><?=$item['stand_name']?></th>-->
     		
 			<?php endforeach; ?>
             <th>View</th>
@@ -35,7 +35,7 @@ $(function(){
     <td><?=$item_product['product_id']?></td>
      <td><?=$item_product['product_name']?></td>
       <td><?=$item_product['product_category_name']?></td>
-       <td><?=$item_product['product_type_name']?></td>
+       <!--<td><?=$item_product['product_type_name']?></td>-->
        <td><?php
        $total = $this->realtime_stock_model->get_total_qty($item_product['product_id']);
 	   foreach($total as $item_total):
@@ -50,12 +50,12 @@ $(function(){
 			if($list_value){
 			
 			foreach($list_value as $item3): ?>
-            <td><?= $item3['product_stock_qty'] ?></td>
+            <!--<td><?= $item3['product_stock_qty'] ?></td>-->
     		
 			<?php endforeach;
 			}else{
 			 ?> 
-            <td>0</td>
+            <!--<td>0</td>-->
 			<?php
             }
 			endforeach;

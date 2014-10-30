@@ -78,7 +78,7 @@ class Global_model extends CI_Model
 	    $this->html2pdf->filename($title.'.pdf');
 	    
 	    //Set the paper defaults
-	    $this->html2pdf->paper( 'A4', 'portrait');
+	    $this->html2pdf->paper( 'A5', 'landscape');
 	    
 	   	
 

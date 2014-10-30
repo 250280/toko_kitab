@@ -90,7 +90,7 @@ $(function(){
                 <th>Kategori</th>
                 <th>Kode Produk</th>
                 <th>Nama Produk</th>
-                <th>Tipe Produk</th>
+               
                 <th>Stok</th>
 				<th>Harga</th>
            

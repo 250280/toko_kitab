@@ -131,18 +131,18 @@
                             
                         </div ><!-- /.col (LEFT) -->
                         
-                        <div class="col-md-6">
+                      <div class="col-md-6">
                             <!-- AREA CHART -->
                             <div class="box box-info">
                                 <div class="box-header">
-                                    <h3 class="box-title">Top 10 Salesman</h3>
+                                    <h3 class="box-title">Expired</h3>
                                 </div>
                                 <div class="box-body chart-responsive">
                                     <?= $content6?>
                                 </div><!-- /.box-body -->
-                            </div><!-- /.box -->
+                           </div><!-- /.box -->
                             
-                        </div>
+                       </div>
                        
                     </div><!-- /.row -->
 

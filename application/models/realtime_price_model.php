@@ -51,11 +51,10 @@ class Realtime_price_model extends CI_Model{
 		};	
 
 		$sql = "
-		select a.* , b.product_name, c.stand_name, d.product_type_name, e.product_category_name
+		select a.* , b.product_name, c.stand_name, e.product_category_name
 		from product_stocks a
 		join products b on b.product_id = a.product_id
-		join stands c on c.stand_id = a.stand_id
-		join product_types d on d.product_type_id = b.product_type_id
+		join stands c on a.stand_id = c.stand_id
 		join product_categories e on e.product_category_id = b.product_category_id
 		$where  $order_by
 			
@@ -76,13 +75,13 @@ class Realtime_price_model extends CI_Model{
 				$row['stand_name'],
 				$row['product_category_name'],
 				$row['product_name'],
-				$row['product_type_name'],
+				//$row['product_type_name'],
 				$row['product_stock_qty'],
 				tool_money_format($row['user_price']),
-				tool_money_format($row['freeline_price']),
-				tool_money_format($row['counter_price']),
-				tool_money_format($row['online_price']),
-				tool_money_format($row['another_price'])
+				//tool_money_format($row['freeline_price']),
+				//tool_money_format($row['counter_price']),
+				//tool_money_format($row['online_price']),
+				//tool_money_format($row['another_price'])
 			); 
 		}
 		
@@ -146,5 +145,18 @@ class Realtime_price_model extends CI_Model{
 		}else{
 			return FALSE;
 		}
+	}
+	
+	function read_categori($id)
+	{
+		$sql = "
+			select * from products
+			where product_id = $id
+		";
+		
+		
+		$query = $this->db->query($sql); 
+		//query();	
+		return $query;
 	}
 }

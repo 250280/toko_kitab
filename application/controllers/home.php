@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 class Home extends CI_Controller
 {
 	var $raw;

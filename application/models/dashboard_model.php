@@ -9,9 +9,9 @@ class Dashboard_model extends CI_Model{
 	
 	function get_data_top_product() {
 		
-		$query = "SELECT a.product_id, a.product_code, a.product_name, b.qty, c.product_type_name
+		$query = "SELECT a.product_id, a.product_code, a.product_name, b.qty
 				FROM products a
-				JOIN product_types c on c.product_type_id = a.product_type_id  
+				 
 				JOIN (
 				
 				SELECT sum( transaction_detail_qty ) AS qty, product_id
@@ -89,11 +89,11 @@ class Dashboard_model extends CI_Model{
 	
 	function get_data_limit_stock() {
 		
-		$query = "select a.product_stock_qty, b.product_code, b.product_name, c.product_category_name, d.product_type_name , e.stand_name
+		$query = "select a.product_stock_qty, b.product_code, b.product_name, c.product_category_name,  e.stand_name
 				from product_stocks a
 				join products b on b.product_id = a.product_id
 				join product_categories c on c.product_category_id = b.product_category_id
-				join product_types d on d.product_type_id = b.product_type_id
+				
 				join stands e on e.stand_id = a.stand_id 
 				where  a.product_stock_qty <= b.product_min_reorder
 				limit 10"
@@ -112,6 +112,31 @@ class Dashboard_model extends CI_Model{
         return $data;
     }
 	
+	function get_data_limit_expired() {
+		
+		$query = "select a.expired, b.product_code, b.product_name, c.product_category_name,  e.stand_name
+				from product_stocks a
+				join products b on b.product_id = a.product_id
+				join product_categories c on c.product_category_id = b.product_category_id
+				
+				join stands e on e.stand_id = a.stand_id 
+				WHERE a.expired <>0000 -00 -00
+				ORDER BY a.expired ASC
+				limit 10"
+					;
+		
+        $query = $this->db->query($query);
+       // query();
+        if ($query->num_rows() == 0)
+            return array();
+
+        $data = $query->result_array();
+
+        foreach ($data as $index => $row) {
+         	
+        }
+        return $data;
+    }
 	
 	function get_period()
 	{

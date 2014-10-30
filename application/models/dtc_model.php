@@ -861,11 +861,11 @@ class Dtc_model extends CI_Model
 		}
 		
 		$sql = "
-		select a.*, b.product_name, b.product_code, c.product_category_name, d.product_type_name, e.stand_name
+		select a.*, b.product_name, b.product_code, c.product_category_name,  e.stand_name
 		from product_stocks a
 		join products b on b.product_id = a.product_id
 		join product_categories c on c.product_category_id = b.product_category_id
-		join product_types d on d.product_type_id = b.product_type_id
+		
 		join stands e on e.stand_id = a.stand_id
 		where product_stock_qty > 0
 		$where  $order_by
@@ -902,7 +902,7 @@ class Dtc_model extends CI_Model
 				$row['product_category_name'],
 				$row['product_code'],
 				$row['product_name'],
-				$row['product_type_name'],
+				//$row['product_type_name'],
 				$row['product_stock_qty'],
 				tool_money_format($price)
 				
@@ -948,7 +948,7 @@ class Dtc_model extends CI_Model
 		$order_by_column[] = 'product_id';
 		$order_by_column[] = 'product_code';
 		$order_by_column[] = 'product_name';
-		$order_by_column[] = 'product_type_name';
+		//$order_by_column[] = 'product_type_name';
 		$order_by_column[] = 'product_category_name';
 		
 		$order_by = $order_by_column[$sort_column_index] . $sort_dir;
@@ -956,7 +956,7 @@ class Dtc_model extends CI_Model
 		
 		$column['p1']			= 'product_code';
 		$column['p2']			= 'product_name';
-		$column['p3']			= 'product_type_name';
+		//$column['p3']			= 'product_type_name';
 		$column['p4']			= 'product_category_name';
 	
 		$this->db->start_cache();
@@ -974,9 +974,8 @@ class Dtc_model extends CI_Model
 		};	
 
 		$sql = "
-		select a.*, b.product_type_name, c.product_category_name 
+		select a.*, c.product_category_name 
 		from products a
-		join product_types b on b.product_type_id = a.product_type_id
 		join product_categories c on c.product_category_id = a.product_category_id
 		$where  $order_by
 			
@@ -999,7 +998,7 @@ class Dtc_model extends CI_Model
 				$row['product_id'], 
 				$row['product_code'],
 				$row['product_name'],
-				$row['product_type_name'],
+				//$row['product_type_name'],
 				$row['product_category_name']
 			); 
 

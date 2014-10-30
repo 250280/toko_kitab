@@ -34,11 +34,13 @@ class Product extends CI_Controller{
 			$data['product_purchase_price']	= '';
 			$data['product_min_reorder']	= '';
 			$data['product_point']	= '';
+			//$data['product_expired']	= '';
 		}else{
 			$result = $this->product_model->read_id($id);
 			if($result){
 				$data = $result;
 				$data['row_id'] = $id;
+				$data['product_expired'] = date('d/m/Y', strtotime($data['product_expired']));
 			}
 		}
 
@@ -63,10 +65,11 @@ class Product extends CI_Controller{
 		$this->form_validation->set_rules('i_code','Kode', 'trim|required');
 		$this->form_validation->set_rules('i_name','Nama', 'trim|required|max_length[200]');
 		$this->form_validation->set_rules('i_category_id','Kategori Produk', 'trim|required');
-		$this->form_validation->set_rules('i_type_id','Tipe Produk', 'trim|required');
+		//$this->form_validation->set_rules('i_type_id','Tipe Produk', 'trim|required');
 		$this->form_validation->set_rules('i_purchase_price','Harga Beli', 'trim|required|numeric');
 		$this->form_validation->set_rules('i_min_reorder','Minimal Reorder', 'trim|required|numeric');
 		$this->form_validation->set_rules('i_point','Poin', 'trim|required|numeric');
+		//$this->form_validation->set_rules('i_expired','Expired', 'trim|valid_date|sql_date');
 		
 		if($this->form_validation->run() == FALSE) send_json_validate();
 		
@@ -76,8 +79,9 @@ class Product extends CI_Controller{
 		$data['product_type_id'] 			= $this->input->post('i_type_id');
 		$data['product_description'] 		= $this->input->post('i_description');
 		$data['product_purchase_price'] 	= $this->input->post('i_purchase_price');
-		$data['product_min_reorder'] 			= $this->input->post('i_min_reorder');
-		$data['product_point'] 			= $this->input->post('i_point');
+		$data['product_min_reorder'] 		= $this->input->post('i_min_reorder');
+		$data['product_point'] 				= $this->input->post('i_point');
+		//$data['product_expired'] 			= $this->input->post('i_expired');
 		
 		if(empty($id)){
 			$data['product_status'] 					= 1;

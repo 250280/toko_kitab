@@ -14,7 +14,9 @@ $(function(){
 		dataSource		: "lookup/product_lookup_id",
 		column_id 		: 0,
 		component_id	: "#lookup_product",
-		filter_by		: [{id : "p1", label : "Kode Produk"}, {id : "p2", label : "Nama Produk"}, {id : "p3", label : "Tipe"}, {id : "p4", label : "Kategori"}]
+		filter_by		: [{id : "p1", label : "Kode Produk"}, {id : "p2", label : "Nama Produk"}, {id : "p3", label : "Tipe"}, {id : "p4", label : "Kategori"}],
+		onSelect		: load_category
+		
 	});
 	
 	createLookUp({
@@ -27,6 +29,39 @@ $(function(){
 		filter_by		: [{id : "p1", label : "Nama"}]
 	});
 	
+	function load_category()
+	{
+		var id 	= $('input[name="i_product_id"]').val();
+		
+		if(id == ""){
+			return;
+		}
+		var data ='id='+id; 
+		
+		$.ajax({
+			type: 'POST',
+			url: '<?=site_url('realtime_price/load_category')?>',
+			data: data,
+			dataType: 'json',
+			success: function(data){	
+				$('input[name="i_category_id"]').val(data.content['product_category_id']);
+				load_category_item();
+			}
+			
+		});
+	}
+	
+	function load_category_item(){
+		 var i_category_id = $('input[name="i_category_id"]').val();
+		var expired = document.getElementById("expired");
+		if(i_category_id == 1){
+			expired.style.display = 'inline';
+		}else{
+			expired.style.display = 'none';
+		}
+		
+	}
+
 	createDatePicker();
 });
 
@@ -40,7 +75,7 @@ $(function(){
        <td> <input type="hidden" name="row_id" value="<?=$row_id?>" />Produk <span class="lookup" id="lookup_product">
            <input type="hidden" name="i_product_id" class="com_id" value="<?=$product_id?>" />
           
-           <div class="iconic_base iconic_search com_popup"></div>
+          <div class="iconic_base iconic_search com_popup"></div>
            <input type="text" class="com_input" />
            
            </span>	
@@ -60,13 +95,21 @@ $(function(){
      <td>Qty
        <input name="i_qty" type="text" id="i_qty" value="<?=$product_stock_qty ?>" size="10"/></td>
      </tr>
+     <tr >
+     <td id="expired">Expired
+       <input name="i_expired" type="text" id="i_expired" value="<?=$expired ?>" class="date_input" size="10"/></td>
+     </tr>
+     <tr>
+     <td>     
+         <input name="i_category_id" type="hidden" id="i_category_id" value="<?=$user_price ?>" size="10"/></td>
+     </tr>
       <tr>
      <td>Harga
-       User
+     
          <input name="i_user_price" type="text" id="i_user_price" value="<?=$user_price ?>" size="10"/></td>
      </tr>
        <tr>
-     <td>Harga
+     <!--<td>Harga
        Distributor
          <input name="i_another_price" type="text" id="i_another_price" value="<?=$another_price ?>" size="10"/></td>
      </tr>
@@ -84,7 +127,7 @@ $(function(){
      <td>Harga
 Online         
        <input name="i_online_price" type="text" id="i_online_price" value="<?=$online_price ?>" size="10"/></td>
-     </tr>
+     </tr>-->
    
    
    
@@ -110,7 +153,6 @@ Online
 			<th>ID</th>
             <th>Kode</th>
 				<th>Nama</th>
-            <th>Tipe</th>
             <th>Kategori</th>
 			</tr> 
 		</thead> 

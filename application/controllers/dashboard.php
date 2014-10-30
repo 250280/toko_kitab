@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller{
 		$data_top_customer = $this->dashboard_model->get_data_top_customer();
 		$data_top_salesman = $this->dashboard_model->get_data_top_salesman();
 		$data_limit_stock = $this->dashboard_model->get_data_limit_stock();
+		$data_limit_expired = $this->dashboard_model->get_data_limit_expired();
 		
 		$get_period = $this->dashboard_model->get_period();
 		
@@ -54,12 +55,14 @@ class Dashboard extends CI_Controller{
 					'content3' => 'app/dashboard/limit_stock',
 					'content4' => 'app/dashboard/flow_transaction',
 					'content5' => 'app/dashboard/profit',
+					'content6' => 'app/dashboard/limit_expired',
 				)
 				, array(
 					'list_top_product' => $data_top_product, 
 					'list_top_customer' => $data_top_customer,
 					'list_top_salesman' => $data_top_salesman,
 					'list_limit_stock' => $data_limit_stock,
+					'list_limit_expired' => $data_limit_expired,
 					'list_flow_transaction' => $list_flow_transaction,
 					'active_period_id' => $get_period[0],
 					'active_period_name' => $get_period[1],

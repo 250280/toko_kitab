@@ -1,5 +1,5 @@
 
-<form id="id_form_nya">
+<!-- <form id="id_form_nya">
 
   <table width="100%" border="0" cellspacing="0" cellpadding="4" class="new_table">
     <tr class="title">
@@ -9,7 +9,7 @@
     
       <td align="left">Total</td>
     </tr>
-    <?php 
+    <?php /*
 	$no = 1;
 	foreach($list_top_salesman as $item): ?>
              <tr <?php if($no == 1){ ?> class="tr_no3" <?php }elseif($no%2 == 0){ echo 'class="tr_1"'; }else{ echo 'class="tr_2"'; }?>>
@@ -28,7 +28,7 @@
     </tr>
 			<?php 
 			$no++;
-			endforeach; ?>
+			endforeach; */?>
   
   </table>
 
