@@ -21,10 +21,10 @@ $(function(){
 	
 	$('input[name="i_transaction_sent_price"]').change(function(){
 		
-		var kirim = $('input[name="i_transaction_sent_price"]').val();
-		var total = $('input[name="i_transaction_total_price"]').val();
+		var kirim = parseFloat($('input[name="i_transaction_sent_price"]').val());
+		var total = parseFloat($('input[name="i_transaction_total_price"]').val());
 		
-		final_total = parseFloat(total) - parseFloat(kirim);
+		final_total = (total) - (kirim);
 		
 		$('input[name="i_transaction_final_total_price"]').val(final_total);
 		
@@ -33,15 +33,15 @@ $(function(){
 	
 	$('input[name="i_transaction_payed"]').change(function(){
 		
-		var dibayar = $('input[name="i_transaction_payed"]').val();
-		var final_total = $('input[name="i_transaction_final_total_price"]').val();
+		var dibayar =parseFloat($('input[name="i_transaction_payed"]').val());
+		var final_total = parseFloat($('input[name="i_transaction_final_total_price"]').val());
 		
 		if(dibayar < final_total){
 			alert('Pembayaran tidak boleh kurang dari harga total');
 			$('input[name="i_transaction_change"]').val(0);
 		}else{
 		
-		kembali = parseFloat(dibayar) - parseFloat(final_total);
+		kembali = (dibayar) - (final_total);
 		
 		$('input[name="i_transaction_change"]').val(kembali);
 		}
