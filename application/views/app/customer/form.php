@@ -62,14 +62,14 @@ $(function(){
     <td width="70" valign="top">Keterangan
       <textarea name="i_description" id="i_description" cols="45" rows="5"><?= $customer_description ?></textarea></td>
     </tr>
-    <tr>
+   <!-- <tr>
     <td>Salesman <span class="lookup" id="lookup_salesman">
 				<input type="hidden" name="i_salesman_id" class="com_id" value="<?=$salesman_id?>" />
                 <div class="iconic_base iconic_search com_popup"></div>
 				<input type="text" class="com_input" />
 				
 				</span>	</td>
-    </tr>
+    </tr>-->
     
 
 </table>

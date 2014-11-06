@@ -34,7 +34,7 @@ class Customer extends CI_Controller{
 			$data['customer_phone']	= '';
 			$data['customer_email']	= '';
 			$data['customer_address']		= '';
-			$data['salesman_id']							= '';
+			//$data['salesman_id']							= '';
 		
 		}else{
 			$result = $this->customer_model->read_id($id);
@@ -78,7 +78,7 @@ class Customer extends CI_Controller{
 		$data['customer_phone'] 					= $this->input->post('i_phone');
 		$data['customer_email'] 					= $this->input->post('i_email');
 		$data['customer_address'] 				= $this->input->post('i_address');
-		$data['salesman_id'] 				= ($this->input->post('i_salesman_id')) ? $this->input->post('i_salesman_id') : null;
+		//$data['salesman_id'] 				= ($this->input->post('i_salesman_id')) ? $this->input->post('i_salesman_id') : null;
 		
 		if(empty($id)){	
 			$data['customer_number']			= format_code('customers','customer_number','C',7);
