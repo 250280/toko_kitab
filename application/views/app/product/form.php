@@ -28,16 +28,7 @@ $(function(){
 		filter_by		: [{id : "p1", label : "Nama"}]
 	});
 	
-	function load_category(){
-		 var i_category_id = $('input[name="i_category_id"]').val();
-		var expired = document.getElementById("expired");
-		if(i_category_id == 1){
-			expired.style.display = 'inline';
-		}else{
-			expired.style.display = 'none';
-		}
-		
-	}
+	
 	
 	createDatePicker();
 });
