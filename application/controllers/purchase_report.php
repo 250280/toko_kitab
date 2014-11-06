@@ -44,7 +44,7 @@ class Purchase_report extends CI_Controller
 			{
 				$data = $result;
 				$data['row_id'] = $id;		
-				$data['customer_id'] = $result['subject_id'];	
+				$data['vendor_id'] = $result['subject_id'];	
 				
 			}
 		}	
@@ -277,15 +277,15 @@ class Purchase_report extends CI_Controller
 			{
 				$data = $result;
 				$data['row_id'] = $id;		
-				$data['customer_id'] = $result['subject_id'];	
+				$data['vendor_id'] = $result['subject_id'];	
 				$data['transaction_date'] = strtotime($result['transaction_date']);
-				$data['customer_name'] = ($result['customer_name']) ? $result['customer_name'] : "-";
+				$data['vendor_name'] = ($result['vendor_name']) ? $result['vendor_name'] : "-";
 				
 			}
 			
 		$data_detail = $this->purchase_report_model->get_data_detail($id);
 	   
-	   $this->global_model->create_report('report/normal_sales_transaction.php', $data, $data_detail);
+	   $this->global_model->create_report('Transaksi Pembelian','report/purchase_report.php', $data, $data_detail,'header.php');
 	}
 	}
 }

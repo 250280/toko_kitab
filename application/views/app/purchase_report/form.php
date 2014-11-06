@@ -28,6 +28,16 @@ $(function(){
 		filter_by		: [{id : "p1", label : "Nomor"}, {id : "p2", label : "Nama"}]
 	});
 	
+	createLookUp({
+		table_id		: "#lookup_table_vendor",
+		table_width		: 400,
+		listSource 		: "lookup/vendor_table_control",
+		dataSource		: "lookup/vendor_lookup_id",
+		column_id 		: 0,
+		component_id	: "#lookup_vendor",
+		filter_by		: [{id : "p1", label : "Kode"}, {id : "p2", label : "Nama"}]
+	});
+	
 	createDatePicker();
 	//updateAll(); 
 });
@@ -56,9 +66,9 @@ $(function(){
         <input type="text" name="i_transaction_date" class="date_input" size="15" value="<?=$transaction_date?>" />	</td>
     </tr>
     <tr>
-      <td>Pelanggan
-          <span class="lookup" id="lookup_customer">
-				<input type="hidden" name="i_customer_id" class="com_id" value="<?=$customer_id?>" />
+      <td>Vendor
+          <span class="lookup" id="lookup_vendor">
+				<input type="hidden" name="i_vendor_id" class="com_id" value="<?=$vendor_id?>" />
                 <div class="iconic_base iconic_search com_popup"></div>
 				<input type="text" class="com_input" />
 				

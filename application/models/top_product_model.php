@@ -9,9 +9,9 @@ class Top_product_model extends CI_Model{
 	
 	function get_data_product() {
 		
-		$query = "SELECT a.product_id, a.product_code, a.product_name, b.qty, c.product_type_name
+		$query = "SELECT a.product_id, a.product_code, a.product_name, b.qty
 				FROM products a
-				JOIN product_types c on c.product_type_id = a.product_type_id  
+				
 				JOIN (
 				
 				SELECT sum( transaction_detail_qty ) AS qty, product_id

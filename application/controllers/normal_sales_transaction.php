@@ -181,7 +181,7 @@ class Normal_sales_transaction extends CI_Controller
 		
 		$data['transaction_total_price'] = $total_price;
 		
-		$data['transaction_final_total_price'] = $data['transaction_total_price'] + $data['transaction_sent_price'];
+		$data['transaction_final_total_price'] = $data['transaction_total_price'] - $data['transaction_sent_price'];
 		
 		if($data['transaction_payment_method_id'] == 2){
 			$data['transaction_sisa'] = $data['transaction_final_total_price'] - $data['transaction_down_payment'];

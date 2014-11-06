@@ -40,7 +40,7 @@ class Closing_model extends CI_Model
 		
 		//$this->isi_trial_balance($period_id,"trial_balance2");
 		//$this->isi_trial_balance_mingguan($period_id,"trial_balance3", $week);
-		//$this->hitung_laba_berjalan($period_id);		
+		$this->hitung_laba_berjalan($period_id);		
 		$this->isi_saldo_berikutnya($period_id,$next_period);
 		$this->create_beginning_balance($period_id, $next_period);
 		

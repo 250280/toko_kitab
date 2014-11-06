@@ -44,7 +44,7 @@ $(function(){
       </td>  
       </tr>
        <tr>
-      <td>Ongkos Kirim
+      <td>Potongan Pembelian
         <input type="text" name="i_transaction_sent_price" size="15" value="<?=$transaction_sent_price?>" />	</td>
     </tr>
       </table>

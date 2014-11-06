@@ -285,7 +285,7 @@ class sales_transaction_report extends CI_Controller
 			
 		$data_detail = $this->sales_transaction_report_model->get_data_detail($id);
 	   
-	   $this->global_model->create_report('transaksi penjualan','report/normal_sales_transaction.php', $data, $data_detail);
+	   $this->global_model->create_report('transaksi penjualan','report/normal_sales_transaction.php', $data, $data_detail,'header.php');
 	}
 	}
 }

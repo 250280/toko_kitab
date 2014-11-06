@@ -85,10 +85,13 @@ class Purchase_report_model extends CI_Model
 	}
 	function read_id($id)
 	{
-		$this->db->select('a.*, b.transaction_type_name', 1); // ambil seluruh data
+		$this->db->select('a.*, b.transaction_type_name,c.vendor_name,d.transaction_payment_method_name', 1); // ambil seluruh data
 		$this->db->join('transaction_types b', 'b.transaction_type_id = a.transaction_type_id');
+		$this->db->join('vendors c', 'c.vendor_id = a.subject_id', 'left');
+		$this->db->join('transaction_payment_methods d', 'd.transaction_payment_method_id = a.transaction_payment_method_id');
 		$this->db->where('transaction_id', $id);
 		$query = $this->db->get('transactions a', 1); // parameter limit harus 1
+		//query();
 		$result = null; // inisialisasi variabel. biasakanlah, untuk mencegah warning dari php.
 		foreach($query->result_array() as $row)	$result = format_html($row); // render dulu dunk!
 		return $result; 

@@ -18,9 +18,9 @@
     </td>
   </tr>
   <tr>
-    <td>Pelanggan</td>
+    <td>Supplier</td>
     <td>:</td>
-    <td><?=$customer_name?></td>
+    <td><?=$vendor_name?></td>
   </tr>
     <tr>
     <td>Pembayaran</td>

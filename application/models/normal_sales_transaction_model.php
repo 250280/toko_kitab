@@ -189,6 +189,7 @@ class Normal_sales_transaction_model extends CI_Model
 	$i = 0;
 	$journal_items['transaction_id'] = $id;
 	$journal_items['market_id'] =  $datatrans['stand_id'];
+	$journal_items['stand_id'] =  $datatrans['stand_id'];
 	
 	//pembayaran cash
 	if($datatrans['transaction_payment_method_id'] == 1){
@@ -207,7 +208,7 @@ class Normal_sales_transaction_model extends CI_Model
 		$journal_items['journal_description'] = $datatrans['transaction_description'];
 		$journal_items['journal_debit'] = 0;
 		$journal_items['journal_credit'] = $datatrans['transaction_sent_price'];
-		$journal_items['coa_id'] = 32;
+		$journal_items['coa_id'] = 48;
 		$this->db->insert('journals_sl', $journal_items);
 	}
 
@@ -243,7 +244,7 @@ class Normal_sales_transaction_model extends CI_Model
 		$journal_items['journal_description'] = $datatrans['transaction_description'];
 		$journal_items['journal_debit'] = 0;
 		$journal_items['journal_credit'] = $datatrans['transaction_sent_price'];
-		$journal_items['coa_id'] = 32;
+		$journal_items['coa_id'] = 48;
 		$this->db->insert('journals_sl', $journal_items);
 	}
 
@@ -270,7 +271,7 @@ class Normal_sales_transaction_model extends CI_Model
 		$journal_items['journal_description'] = $datatrans['transaction_description'];
 		$journal_items['journal_debit'] = 0;
 		$journal_items['journal_credit'] = $datatrans['transaction_sent_price'];
-		$journal_items['coa_id'] = 32;
+		$journal_items['coa_id'] = 48;
 		$this->db->insert('journals_sl', $journal_items);
 	}
 

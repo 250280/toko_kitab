@@ -24,7 +24,7 @@ $(function(){
 		var kirim = $('input[name="i_transaction_sent_price"]').val();
 		var total = $('input[name="i_transaction_total_price"]').val();
 		
-		final_total = parseFloat(total) + parseFloat(kirim);
+		final_total = parseFloat(total) - parseFloat(kirim);
 		
 		$('input[name="i_transaction_final_total_price"]').val(final_total);
 		
@@ -74,7 +74,7 @@ $(function(){
       </td>  
       </tr>
        <tr>
-      <td>Ongkos Kirim
+      <td>Potongan Penjualan
         <input type="text" name="i_transaction_sent_price" size="15" value="<?=$transaction_sent_price?>" />	</td>
     </tr>
       <tr>
