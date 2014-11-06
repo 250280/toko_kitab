@@ -638,7 +638,7 @@ class Dtc_model extends CI_Model
 		if ($mode == 1)
 			$query = $this->db->get_where('product_categories', array('product_category_id' => $id), 1);
 		else
-			$query = $this->db->get_where('product_categories', array('product_category_code' => $id), 1);
+			$query = $this->db->get_where('product_categories', array('product_category_id' => $id), 1);
 			
 		foreach($query->result_array() as $row)	$result = format_html($row);
 		
