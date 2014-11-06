@@ -40,7 +40,7 @@ class Product extends CI_Controller{
 			if($result){
 				$data = $result;
 				$data['row_id'] = $id;
-				$data['product_expired'] = date('d/m/Y', strtotime($data['product_expired']));
+				//$data['product_expired'] = date('d/m/Y', strtotime($data['product_expired']));
 			}
 		}
 
