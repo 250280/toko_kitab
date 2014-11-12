@@ -20,6 +20,13 @@ class Top_customer extends CI_Controller{
 		$this->render->show('Top 10 Pelanggan');
 	}
 	
+	function report(){
 	
+	   $this->load->model('global_model');
+	   
+	   $data = $this->top_customer_model->get_data_customer();
+	   //query($result);
+	   $this->global_model->create_report_customer('Top Customer','report/top_customer_report.php', $data,'header.php');
+	}
 	
 }

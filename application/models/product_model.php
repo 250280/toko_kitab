@@ -20,7 +20,7 @@ class product_model extends CI_Model{
 		$columns['product_code'] 			= 'product_code';
 		$columns['product_name'] 			= 'product_name';
 		$columns['product_category_name']	= 'product_category_name';
-		$columns['product_type_name']		= 'product_type_name';
+		$columns['product_purchase_price']		= 'product_purchase_price';
 		
 		$sort_column_index = $params['sort_column'];
 		$sort_dir = $params['sort_dir'];
@@ -29,7 +29,7 @@ class product_model extends CI_Model{
 		$order_by_column[] = 'product_code';
 		$order_by_column[] = 'product_name';
 		$order_by_column[] = 'product_category_name';
-		$order_by_column[] = 'product_type_name';
+		$order_by_column[] = 'product_purchase_price';
 		
 		$order_by = " order by ".$order_by_column[$sort_column_index] . $sort_dir;
 		if (array_key_exists($category, $columns) && strlen($keyword) > 0) 
@@ -67,7 +67,7 @@ class product_model extends CI_Model{
 				$row['product_code'],
 				$row['product_name'],
 				$row['product_category_name'],
-				$row['product_type_name']
+				$row['product_purchase_price']
 			); 
 		}
 		

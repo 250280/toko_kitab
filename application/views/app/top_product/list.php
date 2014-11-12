@@ -34,7 +34,7 @@
   </table>
   <div id="panel" class="command_table">
 	
-	<input type="button" id="refresh" value="Print"/>
+	<input type="button" value="Print" onclick="location.href='<?=site_url('top_product/report')?>'"/>
 </div>
 
 

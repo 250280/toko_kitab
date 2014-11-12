@@ -30,7 +30,7 @@ class Realtime_price extends CI_Controller{
 			$data['stand_id']			= '';
 			$data['product_stock_qty']	= '';
 			$data['product_stock_description']		= '';
-				$data['product_category_name']		= '';
+			$data['product_category_name']		= '';
 			$data['user_price']	= '';
 			$data['freeline_price']	= '';
 			$data['counter_price']	= '';

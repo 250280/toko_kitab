@@ -17,6 +17,7 @@ class Purchase_report extends CI_Controller
 	}
 	function index()
 	{
+
 		$this->render->add_view('app/purchase_report/list');
 		$this->render->build('Data Transaksi Pembelian');
 		$this->render->show('Transaksi Pembelian');
@@ -27,6 +28,24 @@ class Purchase_report extends CI_Controller
 		$data = $this->purchase_report_model->list_controller();
 		send_json($data); 
 	}
+	
+	function detail_table_loader() {
+       
+        $data = $this->purchase_report_model->list_controller();
+        $sort_id = 0;
+        
+        foreach ($data as $key => $value) {
+            $data[$key] = array(
+				form_transient_pair('transient_date', $value['transaction_date']),
+				form_transient_pair('transient_cabang', $value['stand_name']),
+				form_transient_pair('transient_kode', $value['transaction_code']),
+                form_transient_pair('transient_jenis_transaksi', $value['transaction_type_name']),
+				form_transient_pair('transient_total', $value['transaction_total_price']),
+            );
+        }
+        send_json(make_datatables_list($data));
+    }
+
 	
 	function form($id = 0)
 	{
@@ -287,5 +306,20 @@ class Purchase_report extends CI_Controller
 	   
 	   $this->global_model->create_report('Transaksi Pembelian','report/purchase_report.php', $data, $data_detail,'header.php');
 	}
+	}
+	
+	function report_date(){
+		
+		$data = array();
+				$data['transaction_code']					= '';
+				$data['row_id']					= '';
+				$data['stand_id']					= '';
+				$data['transaction_date']					= '';
+				$data['vendor_id']					= '';
+								
+		$this->load->helper('form');
+		$this->render->add_form('app/purchase_report/form_report',$data,true);
+		$this->render->build('Pembelian');
+		$this->render->show('Pembelian');
 	}
 }

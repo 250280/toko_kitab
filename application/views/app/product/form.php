@@ -86,9 +86,9 @@ $(function(){
      <td>Min Reorder
        <input name="i_min_reorder" type="text" id="i_min_reorder" value="<?=$product_min_reorder ?>" size="10"/></td>
      </tr>
-       <tr>
+      <!-- <tr>
      <td>Poin<input name="i_point" type="text" id="i_point" value="<?=$product_point?>" size="10"/></td>
-     </tr>
+     </tr>-->
    
    
    

@@ -31,6 +31,7 @@ $(function(){
 			<th>Nama Barang</th>
 			<th>Harga</th>
             <th>Jumlah</th>
+            <th>Expired</th>
             <th>Total</th>
 		</tr> 
 	</thead> 

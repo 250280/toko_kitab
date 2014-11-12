@@ -113,13 +113,18 @@ class Purchase_model extends CI_Model
 		foreach($items as $row)
 		{			
 			$row['transaction_id'] = $id;
-			$row['product_stock_id'] = 0;
+			$row['product_stock_id'] = $row['product_stock_id'];
 			$this->db->insert('transaction_details', $row);
 			
 			//edit harga beli
 			$this->db->where('product_id', $row['product_id']); // data yg mana yang akan di update
 			$data_product_price['product_purchase_price'] = $row['transaction_detail_price'];
 			$this->db->update('products', $data_product_price);
+			
+			//edit expired
+			$this->db->where('product_id', $row['product_id']); // data yg mana yang akan di update
+			$data_product_expired['expired'] = $row['transaction_detail_expired'];
+			$this->db->update('product_stocks', $data_product_expired);
 			
 			//tambah stok
 			$qty = $this->get_old_stock($row['product_id'], $data['stand_id']);
@@ -468,6 +473,19 @@ class Purchase_model extends CI_Model
 		}else{
 			return FALSE;
 		}
+	}
+	
+	function read_categori($id)
+	{
+		$sql = "
+			select * from products
+			where product_id = $id
+		";
+		
+		
+		$query = $this->db->query($sql); 
+		//query();	
+		return $query;
 	}
 }
 #

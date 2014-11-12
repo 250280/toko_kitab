@@ -28,6 +28,7 @@ $(function(){
 				$('input[name="i_product_code"]').val(data.content['product_code']);
 				//$('input[name="i_transaction_detail_qty"]').val('');
 				$('input[name="i_transaction_detail_price"]').val(data.content['product_purchase_price']);
+				load_category();
 			}
 			
 		});
@@ -52,6 +53,39 @@ $(function(){
 		
 	});
 	
+	function load_category()
+	{
+		var id 	= $('input[name="i_product_id"]').val();
+		
+		if(id == ""){
+			return;
+		}
+		var data ='id='+id; 
+		
+		$.ajax({
+			type: 'POST',
+			url: '<?=site_url('purchase/load_category')?>',
+			data: data,
+			dataType: 'json',
+			success: function(data){	
+				$('input[name="i_category_id"]').val(data.content['product_category_id']);
+				load_category_item();
+			}
+			
+		});
+	}
+	
+	function load_category_item(){
+		 var i_category_id = $('input[name="i_category_id"]').val();
+		var expired = document.getElementById("expired");
+		if(i_category_id == 1){
+			expired.style.display = 'inline';
+		}else{
+			expired.style.display = 'none';
+		}
+		
+	}
+	createDatePicker();
 });
 </script>
 <form class="subform_area">
@@ -69,6 +103,14 @@ $(function(){
         
        </span></td>
 	</tr>
+    <tr>
+     <td>     
+         <input name="i_category_id" type="hidden" id="i_category_id" value="<?=$transaction_detail_price ?>" size="10"/></td>
+     </tr>
+    <tr >
+     <td id="expired">Expired
+       <input name="i_transaction_detail_expired" type="text" id="i_transaction_detail_expired" value="<?=$transaction_detail_expired ?>" class="date_input" size="10"/></td>
+     </tr>
     <tr>
      <td width="70" >Harga Beli
        <input name="i_transaction_detail_price" type="text" id="i_transaction_detail_price" value="<?=$transaction_detail_price ?>" />

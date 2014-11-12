@@ -31,8 +31,12 @@ class Purchase extends CI_Controller
 	function form($id = 0)
 	{
 		$data = array();
+		$this->load->model('global_model');
+		$period_id = $this->global_model->get_active_period();
 		if ($id == 0) {
+			
 			$data['row_id'] = '';
+			$data['period_id'] = $period_id[0];
 			$data['transaction_code']			= format_code('transactions','transaction_code','PB',7);
 			$data['stand_id'] = '';
 			$data['transaction_date'] = date('d/m/Y');
@@ -122,6 +126,7 @@ class Purchase extends CI_Controller
 		$list_transaction_detail_qty	= $this->input->post('transient_transaction_detail_qty');
 		$list_transaction_detail_price	 	= $this->input->post('transient_transaction_detail_price');
 		$list_transaction_detail_total_price	= $this->input->post('transient_transaction_detail_total_price');
+		$list_transaction_detail_expired	= $this->input->post('transient_transaction_detail_expired');
 		
 		if(!$list_product_id) send_json_error('Data item produk belum ada');
 		if($data['transaction_payment_method_id'] == '2' && $data['subject_id'] == "") send_json_error('Pembayaran kredit harus memasukkan data customer');
@@ -142,7 +147,8 @@ class Purchase extends CI_Controller
 				'transaction_detail_qty'  => $list_transaction_detail_qty[$key],
 				'transaction_detail_price'  => $list_transaction_detail_price[$key],
 				'transaction_detail_purchase_price' => $get_purchase_price,
-				'transaction_detail_total_price'  => $list_transaction_detail_total_price[$key]
+				'transaction_detail_total_price'  => $list_transaction_detail_total_price[$key],
+				'transaction_detail_expired' => $list_transaction_detail_expired[$key]
 			);
 			$total_price += $list_transaction_detail_total_price[$key];
 		}
@@ -168,6 +174,7 @@ class Purchase extends CI_Controller
 		if(empty($id)) // jika tidak ada id maka create
 		{ 
 			$data['transaction_code'] 			= format_code('transactions','transaction_code','PB',7);
+			$data['transaction_datetime']		= date('Y-m-d H:m:s');
 			
 			$error = $this->purchase_model->create($data, $items);
 			send_json_action($error, "Data telah ditambah", "Data gagal ditambah", $this->purchase_model->insert_id);
@@ -197,8 +204,9 @@ class Purchase extends CI_Controller
 				form_transient_pair('transient_product_name', $value['product_name']),
 				form_transient_pair('transient_transaction_detail_price', tool_money_format($value['transaction_detail_price']), $value['transaction_detail_price']),
 				form_transient_pair('transient_transaction_detail_qty', $value['transaction_detail_qty'], $value['transaction_detail_qty']),
-				form_transient_pair('transient_transaction_detail_total_price', tool_money_format($value['transaction_detail_total_price']), $value['transaction_detail_total_price'])
-		);
+				form_transient_pair('transient_transaction_detail_total_price', tool_money_format($value['transaction_detail_total_price']), $value['transaction_detail_total_price']),
+				form_transient_pair('transient_transaction_detail_expired', date('d/m/Y', strtotime($value['transaction_detail_expired'])
+		)));
 		
 		
 		
@@ -221,6 +229,7 @@ class Purchase extends CI_Controller
 			$data['transaction_detail_purchase_price'] = '';
 			$data['transaction_detail_total_price'] = '';
 			$data['transaction_detail_description'] = '';
+			$data['transaction_detail_expired'] = '';
 		} else {
 			
 			$data['index']			= $index;
@@ -233,7 +242,7 @@ class Purchase extends CI_Controller
 			$data['transaction_detail_price'] = array_shift($this->input->post('transient_transaction_detail_price'));
 			$data['transaction_detail_qty'] = array_shift($this->input->post('transient_transaction_detail_qty'));
 			$data['transaction_detail_total_price'] = array_shift($this->input->post('transient_transaction_detail_total_price'));
-			
+			$data['transaction_detail_expired'] = array_shift(date('d/m/Y', strtotime($this->input->post('transient_transaction_detail_expired'))));
 		}		
 		$this->render->add_form('app/purchase/transient_form', $data);
 		$this->render->show_buffer();
@@ -245,6 +254,7 @@ class Purchase extends CI_Controller
 		$this->form_validation->set_rules('i_transaction_detail_price', 'Harga', 'trim|required|numeric');
 		$this->form_validation->set_rules('i_transaction_detail_qty', 'Jumlah', 'trim|required|numeric');
 		$this->form_validation->set_rules('i_transaction_detail_total_price', 'Total', 'trim|required|numeric');
+		$this->form_validation->set_rules('i_transaction_detail_expired','Expired', 'trim|valid_date|sql_date');
 		$index = $this->input->post('i_index');		
 		// cek data berdasarkan kriteria
 		if ($this->form_validation->run() == FALSE) send_json_validate(); 
@@ -258,9 +268,10 @@ class Purchase extends CI_Controller
 		$transaction_detail_price 	= $this->input->post('i_transaction_detail_price');
 		$transaction_detail_qty 	= $this->input->post('i_transaction_detail_qty');
 		$transaction_detail_total_price 	= $this->input->post('i_transaction_detail_total_price');
+		$transaction_detail_expired 	= $this->input->post('i_transaction_detail_expired');
 
 		$get_data_product = $this->purchase_model->get_data_product($product_id);
-		
+
 	
 		//send_json_error($no);
 		
@@ -269,7 +280,9 @@ class Purchase extends CI_Controller
 				form_transient_pair('transient_product_name', $get_data_product[1]),
 				form_transient_pair('transient_transaction_detail_price', tool_money_format($transaction_detail_price), $transaction_detail_price),
 				form_transient_pair('transient_transaction_detail_qty', $transaction_detail_qty, $transaction_detail_qty),
+				form_transient_pair('transient_transaction_detail_expired', $transaction_detail_expired),
 				form_transient_pair('transient_transaction_detail_total_price', tool_money_format($transaction_detail_total_price), $transaction_detail_total_price,
+			
 				array(
           
 					'transient_product_code' => $product_code
@@ -316,5 +329,21 @@ class Purchase extends CI_Controller
 	   
 	   $this->global_model->create_report('purchase', 'report/purchase.php', $data, $data_detail);
 	}
+	}
+	
+	function load_category()
+	{
+		$id 	= $this->input->post('id');
+		//echo $id;
+		$query = $this->purchase_model->read_categori($id);
+		$data = array();
+		
+		foreach($query->result_array() as $row)
+		{
+			
+			$data['product_category_id'] = $row['product_category_id'];
+			
+		}
+		send_json_message('Category', $data);
 	}
 }

@@ -105,7 +105,6 @@ $(function(){
      </tr>
       <tr>
      <td>Harga
-     
          <input name="i_user_price" type="text" id="i_user_price" value="<?=$user_price ?>" size="10"/></td>
      </tr>
        <tr>

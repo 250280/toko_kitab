@@ -94,7 +94,7 @@ class Global_model extends CI_Model
 	    }
 	}
 	
-	function create_report_neraca($title, $content, $data = '', $data_coa1, $data_coa2, $data_coa3, $header){
+	function create_report_neraca($title, $content, $data = '', $data_coa1, $data_coa2, $data_coa3,$data_coa4,$data_coa5,$data_coa6, $header){
 		
 	    $this->load->library('html2pdf');
 	    $this->html2pdf->folder('report_new/');
@@ -113,8 +113,66 @@ class Global_model extends CI_Model
 			'data_coa1' => $data_coa1,
 			'data_coa2' => $data_coa2,
 			'data_coa3' => $data_coa3,
+			'data_coa4' => $data_coa4,
+			'data_coa5' => $data_coa5,
+			'data_coa6' => $data_coa6,
 			
 		) ,TRUE) ;
+	    $mydata .= $this->load->view('footer.php',$data,TRUE) ;
+	    //Load html view
+	    $this->html2pdf->html($mydata);
+	    
+	    if($this->html2pdf->create('save')) {
+	    	header('Content-type: application/pdf');
+			readfile('report_new/'.$title.'.pdf');
+	    }
+	}
+	
+	function create_report_laba_rugi($title, $content, $data = '', $data_coa4,$data_coa6, $header){
+		
+	    $this->load->library('html2pdf');
+	    $this->html2pdf->folder('report_new/');
+	    
+	    //Set the filename to save/download as
+	    $this->html2pdf->filename($title.'.pdf');
+	    
+	    //Set the paper defaults
+	    $this->html2pdf->paper( 'A4', 'portrait');
+	    
+	   	
+
+	    $mydata = $this->load->view($header,$data,TRUE) ;
+	    $mydata .= $this->load->view($content, array(
+			'data' => $data, 
+			'data_coa4' => $data_coa4,
+			'data_coa6' => $data_coa6,
+			
+		) ,TRUE) ;
+	    $mydata .= $this->load->view('footer.php',$data,TRUE) ;
+	    //Load html view
+	    $this->html2pdf->html($mydata);
+	    
+	    if($this->html2pdf->create('save')) {
+	    	header('Content-type: application/pdf');
+			readfile('report_new/'.$title.'.pdf');
+	    }
+	}
+	
+	function create_report_customer($title, $content, $data = '', $header){
+		
+	    $this->load->library('html2pdf');
+	    $this->html2pdf->folder('report_new/');
+	    
+	    //Set the filename to save/download as
+	    $this->html2pdf->filename($title.'.pdf');
+	    
+	    //Set the paper defaults
+	    $this->html2pdf->paper( 'A5', 'landscape');
+	    
+	   	
+
+	    $mydata = $this->load->view($header,$data,TRUE) ;
+	    $mydata .= $this->load->view($content, array('data' => $data) ,TRUE) ;
 	    $mydata .= $this->load->view('footer.php',$data,TRUE) ;
 	    //Load html view
 	    $this->html2pdf->html($mydata);

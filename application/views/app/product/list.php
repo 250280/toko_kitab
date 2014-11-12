@@ -25,7 +25,7 @@ $(function(){
             <th>Kode</th>
             <th>Nama Cabang</th>
 			<th>Kategori Produk</th>
-            <th>Tipe Produk</th>
+            <th>Harga Beli</th>
 		</tr> 
 	</thead> 
 	<tbody> 	

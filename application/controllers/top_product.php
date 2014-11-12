@@ -20,4 +20,13 @@ class Top_product extends CI_Controller{
 		$this->render->show('Top 10 Produk');
 	}
 	
+	function report(){
+	
+	   $this->load->model('global_model');
+	   
+	   $data = $this->top_product_model->get_data_product();
+	   //query($result);
+	   $this->global_model->create_report_customer('Top Customer','report/top_product_report.php', $data,'header.php');
+	}
+	
 }

@@ -40,7 +40,7 @@ body{
     <td align="center"><span class="header_title">Toko Kitab & Apotik</span></td>
   </tr>
   <tr>
-    <td align="center">Jalan Raya Bandung,  Jawa BaratJalan Kedinding Lor 99,  Surabaya</td>
+    <td align="center">Jalan Kedinding Lor 99,  Surabaya</td>
   </tr>
   <tr>
     <td align="center">031-3722771</td>

@@ -1,13 +1,13 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Report_neraca extends CI_Controller{
+class Report_laba_rugi extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->library('render');
-		$this->load->model('report_neraca_model');
+		$this->load->model('report_laba_rugi_model');
 		$this->load->library('access');
-		$this->access->set_module('report.neraca');
+		$this->access->set_module('report.laba_rugi');
 	}
 	
 	function index(){
@@ -18,9 +18,9 @@ class Report_neraca extends CI_Controller{
 			$data['period_id']			= '';
 
 		$this->load->helper('form');
-		$this->render->add_form('app/report_neraca/form', $data);
-		$this->render->build('Laporan Neraca');
-		$this->render->show('Laporan Neraca');
+		$this->render->add_form('app/report_laba_rugi/form', $data);
+		$this->render->build('Laporan Laba Rugi');
+		$this->render->show('Laporan Laba Rugi');
 		//$this->access->generate_log_view($id);
 	}
 	
@@ -51,14 +51,10 @@ class Report_neraca extends CI_Controller{
 		$data['period_id'] = $id;
 		$data['period_name'] = $period;
 		
-		$data_coa1 = $this->report_neraca_model->get_data_coa(1);
-		$data_coa2 = $this->report_neraca_model->get_data_coa(2);
-		$data_coa3 = $this->report_neraca_model->get_data_coa(3);
 		$data_coa4 = $this->report_neraca_model->get_data_coa(4);
-		$data_coa5 = $this->report_neraca_model->get_data_coa(5);
 		$data_coa6 = $this->report_neraca_model->get_data_coa(6);
 		 
-	   	$this->global_model->create_report_neraca('report_neraca', 'report/report_neraca.php', $data, $data_coa1,  $data_coa2, $data_coa3,$data_coa4,$data_coa5,$data_coa6, 'header_normal.php');
+	   	$this->global_model->create_report_laba_rugi('report_laba_rugi', 'report/report_laba_rugi.php', $data, $data_coa4,$data_coa6, 'header_normal.php');
 		
 	}
 	

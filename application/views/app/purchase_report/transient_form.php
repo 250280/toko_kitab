@@ -9,6 +9,39 @@ $(function(){
 		onSelect		: load_product_stock
 	});
 	
+	function load_category()
+	{
+		var id 	= $('input[name="i_product_id"]').val();
+		
+		if(id == ""){
+			return;
+		}
+		var data ='id='+id; 
+		
+		$.ajax({
+			type: 'POST',
+			url: '<?=site_url('purchase/load_category')?>',
+			data: data,
+			dataType: 'json',
+			success: function(data){	
+				$('input[name="i_category_id"]').val(data.content['product_category_id']);
+				load_category_item();
+			}
+			
+		});
+	}
+	
+	function load_category_item(){
+		 var i_category_id = $('input[name="i_category_id"]').val();
+		var expired = document.getElementById("expired");
+		if(i_category_id == 1){
+			expired.style.display = 'inline';
+		}else{
+			expired.style.display = 'none';
+		}
+		
+	}
+	
 	function load_product_stock(id){
 	
 		if(id == ""){
@@ -26,6 +59,8 @@ $(function(){
 				$('input[name="i_product_stock_id"]').val(data.content['product_stock_id']);
 				$('input[name="i_product_code"]').val(data.content['product_code']);
 				$('input[name="i_transaction_detail_price"]').val(data.content['price']);
+				$('input[name="i_expired"]').val(data.content['expired']);
+				load_category();
 				//$('input[name="i_transaction_detail_qty"]').val(data.content['qty']);
 				//$('input[name="i_transaction_detail_total_price"]').val(data.content['total']);
 			}
@@ -60,6 +95,14 @@ $(function(){
         
        </span></td>
 	</tr>
+    <tr>
+     <td>     
+         <input name="i_category_id" type="text" id="i_category_id" value="<?=$user_price ?>" size="10"/></td>
+     </tr>
+    <tr >
+     <td id="expired" >Expired
+       <input name="i_expired" type="text" id="i_expired" value="<?=$expired ?>" class="date_input" size="10"/></td>
+     </tr>
     <tr>
      <td width="70" >Harga<input name="i_transaction_detail_price" type="text" id="i_transaction_detail_price" value="<?=$transaction_detail_price ?>" readonly="readonly" />
      </td>

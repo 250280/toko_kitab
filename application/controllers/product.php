@@ -68,7 +68,7 @@ class Product extends CI_Controller{
 		//$this->form_validation->set_rules('i_type_id','Tipe Produk', 'trim|required');
 		$this->form_validation->set_rules('i_purchase_price','Harga Beli', 'trim|required|numeric');
 		$this->form_validation->set_rules('i_min_reorder','Minimal Reorder', 'trim|required|numeric');
-		$this->form_validation->set_rules('i_point','Poin', 'trim|required|numeric');
+		$this->form_validation->set_rules('i_point','Poin', 'trim|numeric');
 		//$this->form_validation->set_rules('i_expired','Expired', 'trim|valid_date|sql_date');
 		
 		if($this->form_validation->run() == FALSE) send_json_validate();
